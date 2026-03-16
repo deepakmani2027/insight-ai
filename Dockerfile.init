@@ -1,0 +1,15 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy code
+COPY backend/ ./backend/
+COPY data/ ./data/
+COPY scripts/ ./scripts/
+
+# Run setup
+CMD ["python", "scripts/setup.py"]
